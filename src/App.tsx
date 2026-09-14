@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import DataSiswa from './pages/DataSiswa';
+import UserManagement from './pages/UserManagement';
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
-            {/* Real route for Data Siswa */}
+            {/* Real routes */}
+            <Route path="users" element={<UserManagement />} />
             <Route path="siswa" element={<DataSiswa />} />
             
             {/* Mock routes for other layout testing */}

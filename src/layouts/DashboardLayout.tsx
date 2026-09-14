@@ -10,7 +10,8 @@ import {
   FileText, 
   BarChart3,
   LogOut,
-  Menu
+  Menu,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function DashboardLayout() {
@@ -22,16 +23,21 @@ export default function DashboardLayout() {
   }
 
   const navItems = [
-    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard, roles: ['Operator', 'Kepala Sekolah', 'Guru'] },
-    { name: 'Data Siswa', path: '/dashboard/siswa', icon: GraduationCap, roles: ['Operator', 'Guru', 'Kepala Sekolah'] },
-    { name: 'Data Guru', path: '/dashboard/guru', icon: Users, roles: ['Operator', 'Kepala Sekolah'] },
-    { name: 'Manajemen Kelas', path: '/dashboard/kelas', icon: School, roles: ['Operator'] },
-    { name: 'Absensi', path: '/dashboard/absensi', icon: CalendarCheck, roles: ['Operator', 'Guru'] },
-    { name: 'Persuratan', path: '/dashboard/surat', icon: FileText, roles: ['Operator', 'Kepala Sekolah'] },
-    { name: 'Laporan', path: '/dashboard/laporan', icon: BarChart3, roles: ['Operator', 'Kepala Sekolah'] },
+    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard, roles: ['OPERATOR', 'KEPALA_SEKOLAH', 'GURU', 'SISWA'] },
+    { name: 'Manajemen Pengguna', path: '/dashboard/users', icon: ShieldCheck, roles: ['OPERATOR'] },
+    { name: 'Data Siswa', path: '/dashboard/siswa', icon: GraduationCap, roles: ['OPERATOR', 'GURU', 'KEPALA_SEKOLAH'] },
+    { name: 'Data Guru', path: '/dashboard/guru', icon: Users, roles: ['OPERATOR', 'KEPALA_SEKOLAH'] },
+    { name: 'Manajemen Kelas', path: '/dashboard/kelas', icon: School, roles: ['OPERATOR'] },
+    { name: 'Absensi', path: '/dashboard/absensi', icon: CalendarCheck, roles: ['OPERATOR', 'GURU'] },
+    { name: 'Persuratan', path: '/dashboard/surat', icon: FileText, roles: ['OPERATOR', 'KEPALA_SEKOLAH'] },
+    { name: 'Laporan', path: '/dashboard/laporan', icon: BarChart3, roles: ['OPERATOR', 'KEPALA_SEKOLAH'] },
   ];
 
   const allowedNavItems = navItems.filter(item => item.roles.includes(user.role));
+
+  const formatRole = (role: string) => {
+    return role.split('_').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
@@ -68,11 +74,11 @@ export default function DashboardLayout() {
             <div className="flex-shrink-0 w-full group block">
               <div className="flex items-center">
                 <div className="inline-block h-9 w-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
-                  {user.name.charAt(0)}
+                  {user.full_name ? user.full_name.charAt(0) : 'U'}
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-white">{user.name}</p>
-                  <p className="text-xs font-medium text-slate-400">{user.role}</p>
+                  <p className="text-sm font-medium text-white truncate max-w-[140px]">{user.full_name}</p>
+                  <p className="text-xs font-medium text-slate-400">{formatRole(user.role)}</p>
                 </div>
               </div>
             </div>
@@ -98,7 +104,7 @@ export default function DashboardLayout() {
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center mb-6">
               <h1 className="text-2xl font-semibold text-slate-900 capitalize">
-                {location.pathname.split('/').pop() === 'dashboard' ? 'Dashboard Overview' : location.pathname.split('/').pop()}
+                {location.pathname.split('/').pop() === 'dashboard' ? 'Dashboard Overview' : location.pathname.split('/').pop()?.replace('-', ' ')}
               </h1>
               <button 
                 onClick={logout}

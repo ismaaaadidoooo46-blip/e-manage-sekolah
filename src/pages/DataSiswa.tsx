@@ -126,7 +126,7 @@ export default function DataSiswa() {
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Nama Lengkap</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Kelas</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Alamat</th>
-                  {user?.role === 'Operator' && (
+                  {user?.role === 'OPERATOR' && (
                     <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Aksi</th>
                   )}
                 </tr>
@@ -143,7 +143,7 @@ export default function DataSiswa() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{student.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{student.class}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{student.address}</td>
-                      {user?.role === 'Operator' && (
+                      {user?.role === 'OPERATOR' && (
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button 
                             onClick={() => handleDelete(student.id)}
@@ -162,7 +162,7 @@ export default function DataSiswa() {
         </div>
 
         {/* Add Student Form (Only for Operator) */}
-        {user?.role === 'Operator' && (
+        {user?.role === 'OPERATOR' && (
           <div className="w-full lg:w-80 bg-white shadow rounded-lg overflow-hidden h-fit">
             <div className="px-4 py-5 border-b border-slate-200 sm:px-6">
               <h3 className="text-lg leading-6 font-medium text-slate-900">Tambah Siswa</h3>

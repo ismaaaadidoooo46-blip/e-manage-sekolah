@@ -105,18 +105,21 @@ export default function Login() {
             <p className="text-sm text-slate-500 text-center mb-4">Gunakan Akun Demo di bawah ini:</p>
             <div className="space-y-3">
               <button
+                type="button"
                 onClick={() => autofill('operator')}
                 className="w-full flex justify-center items-center py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
                 <Shield className="mr-2" size={16} /> Operator (operator)
               </button>
               <button
+                type="button"
                 onClick={() => autofill('kepsek')}
                 className="w-full flex justify-center items-center py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
                 <UserCircle className="mr-2" size={16} /> Kepala Sekolah (kepsek)
               </button>
               <button
+                type="button"
                 onClick={() => autofill('guru')}
                 className="w-full flex justify-center items-center py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >

@@ -5,16 +5,20 @@ import { Users, GraduationCap, FileText, CheckCircle } from 'lucide-react';
 export default function Dashboard() {
   const { user } = useAuth();
 
+  const formatRole = (role: string = '') => {
+    return role.split('_').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white overflow-hidden shadow rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-lg leading-6 font-medium text-slate-900">
-            Selamat Datang, {user?.name}!
+            Selamat Datang, {user?.full_name}!
           </h3>
           <div className="mt-2 max-w-xl text-sm text-slate-500">
             <p>
-              Anda masuk sebagai <strong>{user?.role}</strong>. Akses menu di sebelah kiri disesuaikan dengan izin peran Anda.
+              Anda masuk sebagai <strong>{formatRole(user?.role)}</strong>. Akses menu di sebelah kiri disesuaikan dengan izin peran Anda.
             </p>
           </div>
         </div>
