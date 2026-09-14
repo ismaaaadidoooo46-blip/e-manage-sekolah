@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
+import DataSiswa from './pages/DataSiswa';
 
 export default function App() {
   return (
@@ -18,8 +19,10 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
-            {/* Mock routes for layout testing */}
-            <Route path="siswa" element={<Dashboard />} />
+            {/* Real route for Data Siswa */}
+            <Route path="siswa" element={<DataSiswa />} />
+            
+            {/* Mock routes for other layout testing */}
             <Route path="guru" element={<Dashboard />} />
             <Route path="kelas" element={<Dashboard />} />
             <Route path="absensi" element={<Dashboard />} />
