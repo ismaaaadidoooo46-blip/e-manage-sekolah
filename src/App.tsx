@@ -16,12 +16,14 @@ import ManajemenKelas from './pages/ManajemenKelas';
 import Absensi from './pages/Absensi';
 import Persuratan from './pages/Persuratan';
 import Laporan from './pages/Laporan';
+import Register from './pages/Register';
 
 export default function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />

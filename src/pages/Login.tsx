@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { School, UserCircle, Shield, BookOpen, KeyRound } from 'lucide-react';
 
+import { Link } from 'react-router-dom';
+
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -125,6 +127,26 @@ export default function Login() {
               >
                 <BookOpen className="mr-2" size={16} /> Guru (guru)
               </button>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-slate-500">Belum punya akun?</span>
+              </div>
+            </div>
+
+            <div className="mt-6 text-center">
+              <Link
+                to="/register"
+                className="font-medium text-blue-600 hover:text-blue-500"
+              >
+                Daftar akun baru
+              </Link>
             </div>
           </div>
         </div>

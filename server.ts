@@ -69,6 +69,35 @@ async function startServer() {
   };
 
   // --- AUTH & USER ROUTES ---
+  app.post('/api/auth/register', (req, res) => {
+    const { username, password, full_name, role } = req.body;
+    
+    // Check if username already exists
+    if (users.find(u => u.username === username)) {
+      return res.status(400).json({ error: 'Username sudah digunakan' });
+    }
+
+    // Default role validation
+    const validRoles = ['OPERATOR', 'KEPALA_SEKOLAH', 'GURU', 'SISWA'];
+    const assignedRole = validRoles.includes(role) ? role : 'SISWA';
+
+    const newUser = {
+      id: Date.now().toString(),
+      username,
+      password: bcrypt.hashSync(password, 10),
+      full_name,
+      role: assignedRole,
+      is_active: true,
+      created_at: new Date().toISOString()
+    };
+    
+    users.push(newUser);
+    
+    // Auto login after register
+    const payload = { id: newUser.id, username: newUser.username, role: newUser.role, full_name: newUser.full_name };
+    res.status(201).json({ token: jwt.sign(payload, JWT_SECRET, { expiresIn: '8h' }), user: payload });
+  });
+
   app.post('/api/auth/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(u => u.username === username);
