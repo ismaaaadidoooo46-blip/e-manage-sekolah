@@ -11,6 +11,11 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import DataSiswa from './pages/DataSiswa';
 import UserManagement from './pages/UserManagement';
+import DataGuru from './pages/DataGuru';
+import ManajemenKelas from './pages/ManajemenKelas';
+import Absensi from './pages/Absensi';
+import Persuratan from './pages/Persuratan';
+import Laporan from './pages/Laporan';
 
 export default function App() {
   return (
@@ -20,16 +25,13 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
-            {/* Real routes */}
             <Route path="users" element={<UserManagement />} />
             <Route path="siswa" element={<DataSiswa />} />
-            
-            {/* Mock routes for other layout testing */}
-            <Route path="guru" element={<Dashboard />} />
-            <Route path="kelas" element={<Dashboard />} />
-            <Route path="absensi" element={<Dashboard />} />
-            <Route path="surat" element={<Dashboard />} />
-            <Route path="laporan" element={<Dashboard />} />
+            <Route path="guru" element={<DataGuru />} />
+            <Route path="kelas" element={<ManajemenKelas />} />
+            <Route path="absensi" element={<Absensi />} />
+            <Route path="surat" element={<Persuratan />} />
+            <Route path="laporan" element={<Laporan />} />
           </Route>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Routes>
