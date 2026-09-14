@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Administrasi Sekolah",
+  "description": "Sistem informasi untuk manajemen data sekolah, absensi, dan persuratan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
