@@ -16,7 +16,7 @@ async function startServer() {
   // --- MOCK DATABASE (In-Memory for Preview) ---
   const salt = bcrypt.genSaltSync(10);
   let users = [
-    { id: '1', username: 'operator', password: bcrypt.hashSync('password123', salt), full_name: 'Budi Operator', role: 'OPERATOR', is_active: true, created_at: new Date().toISOString() },
+    { id: '1', username: 'OPERATORSD', password: bcrypt.hashSync('OPERATOR.SD#', salt), full_name: 'Budi Operator', role: 'OPERATOR', is_active: true, created_at: new Date().toISOString() },
     { id: '2', username: 'kepsek', password: bcrypt.hashSync('password123', salt), full_name: 'Pak Kepala Sekolah', role: 'KEPALA_SEKOLAH', is_active: true, created_at: new Date().toISOString() },
     { id: '3', username: 'guru', password: bcrypt.hashSync('password123', salt), full_name: 'Ibu Guru', role: 'GURU', is_active: true, created_at: new Date().toISOString() }
   ];

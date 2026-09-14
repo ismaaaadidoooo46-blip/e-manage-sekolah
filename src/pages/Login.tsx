@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { School, UserCircle, Shield, BookOpen, KeyRound } from 'lucide-react';
+import { School, UserCircle, Shield, BookOpen, KeyRound, Eye, EyeOff } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ export default function Login() {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('password123'); // Default for demo
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,9 +42,14 @@ export default function Login() {
     }
   };
 
-  const autofill = (user: string) => {
-    setUsername(user);
-    setPassword('password123');
+  const autofill = (type: string) => {
+    if (type === 'operator') {
+      setUsername('OPERATORSD');
+      setPassword('OPERATOR.SD#');
+    } else {
+      setUsername(type);
+      setPassword('password123');
+    }
   };
 
   return (
@@ -81,14 +87,21 @@ export default function Login() {
 
             <div>
               <label className="block text-sm font-medium text-slate-700">Password</label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-10"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
             </div>
 
@@ -111,7 +124,7 @@ export default function Login() {
                 onClick={() => autofill('operator')}
                 className="w-full flex justify-center items-center py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
-                <Shield className="mr-2" size={16} /> Operator (operator)
+                <Shield className="mr-2" size={16} /> Operator (OPERATORSD)
               </button>
               <button
                 type="button"
